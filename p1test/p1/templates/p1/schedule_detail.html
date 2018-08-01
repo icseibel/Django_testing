@@ -1,0 +1,10 @@
+{% extends "p1/base.html" %}
+{% block content %}
+<h1>{{ object.medicine }}</h1>
+ {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update" />
+</form>
+{% endblock %}

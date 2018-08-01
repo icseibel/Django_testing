@@ -1,0 +1,48 @@
+{% extends "p1/base.html" %}
+{% block content %}
+<p>
+        <b>Summary</b>
+</p>        
+<table>
+    <tr>
+        <td><b>Name</b></td>
+        <td>
+        {{ medicine.name }}
+        </td>
+   </tr>
+   <tr>
+       <td><b>Active ingredient</b></td>
+       <td>
+       {{ medicine.activeIngredient }}
+       </td>
+  </tr>
+  <tr>
+      <td><b>Laboratory</b></td>
+      <td>
+      {{ medicine.laboratory }}
+      </td>
+  </tr>
+</table>
+<p>
+    <b>Schedules</b>
+</p>
+{% if medicine_schedules %}
+
+  <table>
+    <tr>
+        <th>Schedule</th>
+        <th>Start Date</th>
+        <th>Active?</th>
+    </tr>
+    {% for medicine_schedule in medicine_schedules %}
+    <tr>
+    <td><a href="{% url 'schedule_detail' medicine_schedule.id %}">{{ medicine_schedule.id }}</a></td>
+    <td>{{ medicine_schedule.start_date }}</td>
+    <td>{{ medicine_schedule.isactive }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>There is no schedules for this medicine.</p>
+{% endif %}
+{% endblock %}

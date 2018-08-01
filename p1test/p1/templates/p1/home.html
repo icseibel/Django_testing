@@ -1,0 +1,7 @@
+{% extends "p1/base.html" %}
+{% block content %}
+<ul>
+{% for medicine in medicines %}
+<li style="color:{% cycle 'blue' 'green' %}"><a href="{% url 'medicine_detail' medicine.id %}">{{ medicine.name}}</a></li>
+{% endfor %}
+{% endblock %}
