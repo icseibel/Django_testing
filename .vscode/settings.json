@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "${workspaceFolder}/Project1/bin/python"
+    "python.pythonPath": "${workspaceFolder}/Project1/bin/python",
+    "git.ignoreLimitWarning": true
 }
