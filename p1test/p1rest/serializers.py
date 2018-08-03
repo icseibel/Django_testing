@@ -23,3 +23,8 @@ class MedicineScheduleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = MedicineSchedule
         fields = ('url', 'medicine', 'frequency', 'isactive', 'start_date', 'time_frame_days')
+
+class MedicineScheduleFilteredSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicineSchedule
+        fields = ('medicine', 'frequency', 'isactive', 'start_date', 'time_frame_days')

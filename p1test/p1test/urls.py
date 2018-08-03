@@ -23,11 +23,12 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'medicine', views.MedicineViewSet)
-router.register(r'medicine_schedule', views.MedicineScheduleViewSet)
+router.register(r'medicineschedule', views.MedicineScheduleViewSet)
 
 urlpatterns = [
     path('p1/', include('p1.urls')),
+    path('p1rest/', include('p1rest.urls')),
     path('admin/', admin.site.urls),
     url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))        
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),  
 ]
