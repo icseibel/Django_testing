@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime, timedelta
 from django.urls import reverse
+from django_cryptography.fields import encrypt
 
 # Create your models here.
 class Medicine(models.Model):    			
@@ -30,4 +31,8 @@ class MedicineSchedule(models.Model):
 
 		def get_absolute_url(self):
     			return reverse('schedule_detail', kwargs={'pk': self.pk})
-    	
+
+class ThirdPartyApiKeys(models.Model):
+		api_name = models.CharField(max_length=30)
+		api_url = models.CharField(max_length=100)
+		api_key = encrypt(models.CharField(max_length=100))

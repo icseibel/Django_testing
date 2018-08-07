@@ -24,6 +24,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'medicine', views.MedicineViewSet)
 router.register(r'medicineschedule', views.MedicineScheduleViewSet)
+router.register(r'thirdpartyapis', views.ThirdPartyApiKeysViewSet)
 
 urlpatterns = [
     path('p1/', include('p1.urls')),

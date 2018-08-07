@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from p1.models import Medicine, MedicineSchedule
+from p1.models import Medicine, MedicineSchedule, ThirdPartyApiKeys
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):    
@@ -27,4 +27,9 @@ class MedicineScheduleSerializer(serializers.HyperlinkedModelSerializer):
 class MedicineScheduleFilteredSerializer(serializers.ModelSerializer):
     class Meta:
         model = MedicineSchedule
-        fields = ('medicine', 'frequency', 'isactive', 'start_date', 'time_frame_days')
+        fields = ('medicine', 'frequency', 'isactive', 'start_date', 'time_frame_days') 
+
+class ThirdPartyApiKeysSerializer(serializers.HyperlinkedModelSerializer):    
+    class Meta:
+        model = ThirdPartyApiKeys
+        fields = ('url', 'api_name', 'api_url', 'api_key')        

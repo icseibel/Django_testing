@@ -1,13 +1,14 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework.views import APIView
-from .serializers import UserSerializer, GroupSerializer, MedicineSerializer, MedicineScheduleSerializer, MedicineScheduleFilteredSerializer
-from p1.models import Medicine, MedicineSchedule
+from .serializers import UserSerializer, GroupSerializer, MedicineSerializer, MedicineScheduleSerializer, MedicineScheduleFilteredSerializer, ThirdPartyApiKeysSerializer
+from p1.models import Medicine, MedicineSchedule, ThirdPartyApiKeys
 from p1rest.service import getScheduleByMedicine
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from p1rest.serviceThirdParty import GeoLocationSerializer, GeoLocationRequest
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -48,3 +49,19 @@ class ScheduleByMedicineViewSet(APIView):
         schedules = getScheduleByMedicine(medicine_id=medicine_id)
         serializer = MedicineScheduleFilteredSerializer(schedules, many=True)
         return Response(serializer.data)
+
+class ThirdPartyApiKeysViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Medicine Schedule to be viewed or edited
+    """
+    queryset = ThirdPartyApiKeys.objects.all()
+    serializer_class = ThirdPartyApiKeysSerializer
+
+@permission_classes((permissions.IsAuthenticated,))
+class GeoLocationViewSet(APIView):
+        """
+        API endpoint that allows view current server location info
+        """
+        def get(self, request):
+            serializer = GeoLocationRequest()
+            return Response(serializer.data)
